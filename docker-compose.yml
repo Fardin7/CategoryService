@@ -6,20 +6,5 @@ services:
     build:
       context: .
       dockerfile: CategoryService/Dockerfile
-
-    environment:
-      - ConnectionString=Data Source=CONTAINER_NAME_OF_db;Initial Catalog=DB_NAME;User Id=sa;Password=Your_password123;Pooling=False;Max Pool Size=200;MultipleActiveResultSets=True
-    depends_on:
-      - db
-  db:
-    image: my/db/image/name
-    build:
-      context: .
-      dockerfile: data/Dockerfile
-    # ports:
-    #   - "1444:1433"
-    volumes:
-     - mssqldata:/var/opt/mssql
-
-volumes:
-  mssqldata:
+  Categorydb:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"

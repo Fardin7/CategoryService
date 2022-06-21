@@ -1,4 +1,3 @@
-
 using CategoryService.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,15 +18,21 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+{
+    var db = scope.ServiceProvider.GetService<AppDBContext>();
+    db.Database.Migrate();
+
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
 app.Run();

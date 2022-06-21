@@ -12,5 +12,6 @@ namespace CategoryService.Model
         [Required]
         [MaxLength(300)]
         public string Description { get; set; }
+
     }
 }
