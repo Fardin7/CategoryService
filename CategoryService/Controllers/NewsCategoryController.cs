@@ -1,5 +1,7 @@
-﻿using CategoryService.Data;
+﻿using AutoMapper;
+using CategoryService.Data;
 using CategoryService.Dtos;
+using CategoryService.NewsClient;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CategoryService.Controllers
@@ -9,10 +11,14 @@ namespace CategoryService.Controllers
     public class NewsCategoryController : ControllerBase
     {
         private readonly IRepository _repository;
+        private readonly IClientUpdate _newsServiceUpdate;
+        private readonly IMapper _mapper;
 
-        public NewsCategoryController(IRepository repository)
+        public NewsCategoryController(IRepository repository, IClientUpdate newsServiceUpdate, IMapper mapper)
         {
             _repository = repository;
+            _newsServiceUpdate = newsServiceUpdate;
+            _mapper = mapper;
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
@@ -38,6 +44,8 @@ namespace CategoryService.Controllers
         public async Task<IActionResult> Add(NewsCategoryCreate newsCategoryCreate)
         {
             var categories = await _repository.Add(newsCategoryCreate);
+
+           await _newsServiceUpdate.Send(_mapper.Map<NewsCategoryCreate>(categories));
 
             return CreatedAtAction(nameof(Get), new { categories.Id }, categories );
         }

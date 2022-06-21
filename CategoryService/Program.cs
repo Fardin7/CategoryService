@@ -1,4 +1,5 @@
 using CategoryService.Data;
+using CategoryService.NewsClient;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,9 +9,12 @@ option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddHttpClient();
+
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IRepository,NewsCategoryRepository>();
+builder.Services.AddScoped<IClientUpdate, NewsService>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

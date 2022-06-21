@@ -11,6 +11,7 @@ namespace CategoryService.Mapper
         {
             CreateMap<NewsCategoryCreate, NewsCategory>();
             CreateMap<NewsCategory, NewsCategoryRead>();
+            CreateMap<NewsCategoryRead, NewsCategoryCreate>();
         }
     }
 }
