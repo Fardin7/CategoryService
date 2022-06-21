@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddDbContext<AppDBContext>(option =>
 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionStrings")));
 
@@ -25,7 +24,6 @@ using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().Creat
 
 }
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
