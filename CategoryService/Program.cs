@@ -1,3 +1,4 @@
+using CategoryService.Client;
 using CategoryService.Data;
 using CategoryService.NewsClient;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient("NewsClientPlicy").AddPolicyHandler(new ClientPolicy().linearRetryPolicy);
 
 builder.Services.AddControllers();
 

@@ -45,9 +45,13 @@ namespace CategoryService.Controllers
         {
             var categories = await _repository.Add(newsCategoryCreate);
 
-           await _newsServiceUpdate.Send(_mapper.Map<NewsCategoryCreate>(categories));
+           var result=await _newsServiceUpdate.Notify(_mapper.Map<NewsCategoryCreate>(categories));
 
-            return CreatedAtAction(nameof(Get), new { categories.Id }, categories );
+            if (result!=null)
+            {
+                return CreatedAtAction(nameof(Get), new { categories.Id }, categories);
+            }
+           return BadRequest();
         }
     }
 }
