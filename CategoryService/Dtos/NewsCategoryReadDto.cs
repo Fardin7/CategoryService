@@ -1,6 +1,6 @@
 ﻿namespace CategoryService.Dtos
 {
-    public class NewsCategoryRead
+    public class NewsCategoryReadDto
     {
         public int Id { get; set; }
         public string Name { get; set; }

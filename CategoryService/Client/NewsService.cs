@@ -1,9 +1,7 @@
 ﻿using CategoryService.Dtos;
-using Polly;
-using Polly.Retry;
-using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+
 namespace CategoryService.NewsClient
 {
     public class NewsService : IClientUpdate
@@ -13,7 +11,7 @@ namespace CategoryService.NewsClient
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<HttpResponseMessage> Notify(NewsCategoryCreate newsCategoryRead)
+        public async Task<HttpResponseMessage> Notify(NewsCategoryCreateDto newsCategoryRead)
         {
             HttpClient _httpClient = _httpClientFactory.CreateClient("NewsClientPlicy");
 

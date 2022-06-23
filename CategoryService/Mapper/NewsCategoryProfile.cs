@@ -1,7 +1,7 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using CategoryService.Dtos;
 using CategoryService.Model;
+using Contract.Messages;
 
 namespace CategoryService.Mapper
 {
@@ -9,9 +9,14 @@ namespace CategoryService.Mapper
     {
         public NewsCategoryProfile()
         {
-            CreateMap<NewsCategoryCreate, NewsCategory>();
-            CreateMap<NewsCategory, NewsCategoryRead>();
-            CreateMap<NewsCategoryRead, NewsCategoryCreate>();
+            CreateMap<NewsCategoryCreateDto, NewsCategory>();
+            CreateMap<NewsCategory, NewsCategoryReadDto>();
+            CreateMap<NewsCategoryReadDto, NewsCategoryCreateDto>();
+
+            CreateMap<NewsCategoryCreateDto, NewsCategoryCreate>();
+            CreateMap<NewsCategoryCreateDto, NewsCategoryUpdate>();
+            CreateMap<NewsCategoryReadDto, NewsCategoryDelete>();
+            CreateMap<NewsCategoryReadDto, NewsCategoryCreate>();
         }
     }
 }

@@ -4,6 +4,6 @@ namespace CategoryService.NewsClient
 {
     public interface IClientUpdate
     {
-        Task<HttpResponseMessage> Notify(NewsCategoryCreate newsCategoryRead);
+        Task<HttpResponseMessage> Notify(NewsCategoryCreateDto newsCategoryRead);
     }
 }
