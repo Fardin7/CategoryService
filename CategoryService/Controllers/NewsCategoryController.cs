@@ -3,7 +3,7 @@ using CategoryService.Data;
 using CategoryService.NewsClient;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
-using Contract.Messages;
+using ContractLib.Messages;
 using CategoryService.Dtos;
 
 namespace CategoryService.Controllers

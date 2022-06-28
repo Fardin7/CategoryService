@@ -6,9 +6,15 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["CategoryService/CategoryService.csproj", "CategoryService/"]
-RUN dotnet restore "CategoryService/CategoryService.csproj"
+
+COPY CategoryService/CategoryService.csproj CategoryService/
 COPY . .
+COPY CategoryService/nuget.config CategoryService/
+
+
+
+RUN dotnet restore CategoryService/CategoryService.csproj
+
 WORKDIR "/src/CategoryService"
 RUN dotnet build "CategoryService.csproj" -c Release -o /app/build
 

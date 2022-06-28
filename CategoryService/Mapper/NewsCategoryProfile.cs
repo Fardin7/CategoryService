@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CategoryService.Dtos;
 using CategoryService.Model;
-using Contract.Messages;
+using ContractLib.Messages;
 
 namespace CategoryService.Mapper
 {
